@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>ກຣາສະແດງຄົນທີ່ຖືກແຕ່ລະງວດ</h2>
+    <h2>ກຣາສະແດງຄົນທີ່ຖືກແຕ່ລະງວດ</h2>
     <LineChartGenerator
         :chart-options="chartOptions"
         :chart-data="chartData"
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { Bar as LineChartGenerator } from 'vue-chartjs/legacy'
+import { Bar as LineChartGenerator } from 'vue-chartjs'
 
 import {
     Chart as ChartJS,

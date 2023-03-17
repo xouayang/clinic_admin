@@ -1,9 +1,9 @@
 <template >
   <div>
-    <div class="mt-5 mb-3 ml-2 font-weight-bold">ຈັດການຂໍ້ມູນຄົນເຈັບ</div>
+    <div class="mt-5 mb-3 pb-2 ml-2 font-weight-bold">ຕັ້ງຄ່າລະບົບ</div>
     <v-card>
       <!-- search button------------------------------- -->
-      <v-row  class="d-flex align-center col-12">
+      <v-row class="d-flex align-center col-12">
         <v-col cols="12" md="10" sm="12">
           <v-card-title>
             <v-text-field
@@ -19,8 +19,11 @@
           </v-card-title>
         </v-col>
         <v-col cols="12" md="2" sm="3" class="d-flex justify-end">
-          <v-btn  style="width:100" color="#9155FD" @click="showAddDialog = !showAddDialog"
-            ><span style="color:white">ເພີ່ມຂໍ້ມູນຄົນເຈັບ</span>
+          <v-btn
+            style="width: 100"
+            color="#9155FD"
+            @click="showAddDialog = !showAddDialog"
+            ><span style="color: white">ເພີ່ມຜູ້ໃຊ້</span>
             <v-icon color="white">mdi-plus-outline</v-icon>
           </v-btn>
         </v-col>
@@ -53,6 +56,31 @@
             </template>
             <span>ເເກ້ໄຂ</span>
           </v-tooltip>
+        </template>
+
+        <template #[`item.permission`]>
+          <v-tooltip top color="#9155FD">
+            <template #activator="{ on, attrs }">
+              <v-btn
+                color="#9155FD"
+                rounded
+                v-bind="attrs"
+                v-on="on"
+                @click="showPermission = !showPermission"
+              >
+                <v-icon color="white">mdi-key-outline</v-icon>
+              </v-btn>
+            </template>
+            <span>ກຳນົດສິດທິຜູ້ໃຊ້</span>
+          </v-tooltip>
+        </template>
+        <template #[`item.avatar`]>
+          <v-avatar>
+            <v-img
+              src="https://cdn.vuetifyjs.com/images/john.jpg"
+              alt="John"
+            ></v-img>
+          </v-avatar>
         </template>
       </v-data-table>
     </v-card>
@@ -105,7 +133,7 @@
       >
         <v-card>
           <v-toolbar dark color="#9155FD">
-            <div>ແກ້ໄຂຂໍ້ມູນຄົນເຈັບ</div>
+            <div>ເພິ່ມຜູ້ໃຊ້</div>
             <v-spacer></v-spacer>
             <v-btn icon dark @click="dialog = false">
               <v-icon>mdi-close</v-icon>
@@ -114,17 +142,17 @@
           <v-divider></v-divider>
           <v-col cols="12">
             <v-text-field
+              placeholder="XOUAYANG"
               outlined
               dense
               hide-details="auto"
               label="ຊື່"
               color="#9155FD"
-              value="XOUAYANG"
             />
           </v-col>
           <v-col cols="12">
             <v-text-field
-              value="XAYSOMBOUN"
+              placeholder="XOUAYANG"
               outlined
               dense
               hide-details
@@ -134,7 +162,7 @@
           </v-col>
           <v-col cols="12">
             <v-text-field
-              value="02054116066"
+              placeholder="XOUAYANG"
               outlined
               dense
               hide-details
@@ -144,7 +172,7 @@
           </v-col>
           <v-col cols="12">
             <v-text-field
-              value="04/12/2000"
+              placeholder="XOUAYANG"
               outlined
               dense
               hide-details
@@ -165,7 +193,7 @@
         </v-card>
       </v-dialog>
     </v-row>
-     <v-row>
+    <v-row>
       <v-dialog
         v-model="showAddDialog"
         width="600"
@@ -174,7 +202,7 @@
       >
         <v-card>
           <v-toolbar dark color="#9155FD">
-            <div>ເພີ່ມຂໍ້ມູນຄົນເຈັບ</div>
+            <div>ເພິ່ມຜູ້ໃຊ້</div>
             <v-spacer></v-spacer>
             <v-btn icon dark @click="showAddDialog = !showAddDialog">
               <v-icon>mdi-close</v-icon>
@@ -234,61 +262,92 @@
         </v-card>
       </v-dialog>
     </v-row>
+    <v-row>
+      <v-dialog
+        v-model="showPermission"
+        width="600"
+        transition="dialog-bottom-transition"
+        persistent
+      >
+        <v-card>
+          <v-card>
+            <v-toolbar dark color="#9155FD">
+              <div>ກຳນົດສິດທິຜູ້ໃຊ້</div>
+              <v-spacer></v-spacer>
+              <v-btn icon dark @click="showPermission = !showPermission">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+            </v-toolbar>
+            <v-divider></v-divider>
+            <div style="color: red" class="container">
+              *ກະລຸນາກຳນົດສິດທິຜູ້ໃຊ້
+            </div>
+            <div class="container">
+              <v-select
+                clearable
+                label="ກຳນົດສິດທິຜູ້ໃຊ້"
+                color="#9155FD"
+                outlined
+                dense
+                :items="permission"
+              ></v-select>
+            </div>
+            <v-spacer></v-spacer>
+            <div class="d-flex justify-end pa-4">
+              <v-btn
+                color="#9155FD"
+                width="100"
+                class="white--text"
+                @click="showPermission = false"
+                >ບັນທືກ</v-btn
+              >
+            </div>
+          </v-card>
+        </v-card>
+      </v-dialog>
+    </v-row>
   </div>
 </template>
 <script>
 export default {
-  name: "PatientPages",
+  name: "SettingPages",
   data() {
     return {
       searchTerm: "",
       showDailog: false,
       dialog: false,
-      showAddDialog : false,
+      showAddDialog: false,
+      showPermission: false,
       headers: [
-        { text: "ລຳດັບ", value: "ລຳດັບ" },
+        { text: "ລະຫັດຜູ້ໃຊ້", value: "ລະຫັດຜູ້ໃຊ້" },
+        { text: "ຮູບພາບ", value: "avatar" },
         { text: "ຊື່", value: "ຊື່" },
-        { text: "ທີ່ຢູ່", value: "ທີ່ຢູ່" },
         { text: "ເບີໂທລະສັບ", value: "ເບີໂທລະສັບ" },
-        { text: "ວັນ ເດືອນ ປີ ເກີດ", value: "ວັນ_ເດືອນ_ປີ_ເກີດ" },
-        { text: "Actions", value: "action" },
+        { text: "ຕຳເເໜ່ງ", value: "ຕຳເເໜ່ງ" },
+        { text: "ທີ່ຢູ່", value: "ທີ່ຢູ່" },
+        { text: "ຈັດການສິດທິ", value: "action" },
+        { text: "ກຳນົດສິດທິຜູ້ໃຊ້", value: "permission" },
       ],
       items: [
         {
-          ລຳດັບ: "1",
+          ລະຫັດຜູ້ໃຊ້: "U001",
+          ຮູບພາບ: "XXXXXXXX",
           ຊື່: "XOUAYANG",
-          ທີ່ຢູ່: "XAYSOMBOUN",
           ເບີໂທລະສັບ: "02054116066",
-          ວັນ_ເດືອນ_ປີ_ເກີດ: "04/12/2000",
+          ຕຳເເໜ່ງ: "Doctor",
+          ທີ່ຢູ່: "XAYSOMBOUN",
         },
         {
-          ລຳດັບ: "2",
+          ລະຫັດຜູ້ໃຊ້: "U001",
+          ຮູບພາບ: "XXXXXXXX",
           ຊື່: "XOUAYANG",
-          ທີ່ຢູ່: "XAYSOMBOUN",
           ເບີໂທລະສັບ: "02054116066",
-          ວັນ_ເດືອນ_ປີ_ເກີດ: "04/12/2000",
-        },
-        {
-          ລຳດັບ: "3",
-          ຊື່: "XOUAYANG",
+          ຕຳເເໜ່ງ: "Doctor",
           ທີ່ຢູ່: "XAYSOMBOUN",
-          ເບີໂທລະສັບ: "02054116066",
-          ວັນ_ເດືອນ_ປີ_ເກີດ: "04/12/2000",
-        },
-        {
-          ລຳດັບ: "4",
-          ຊື່: "XOUAYANG",
-          ທີ່ຢູ່: "XAYSOMBOUN",
-          ເບີໂທລະສັບ: "02054116066",
-          ວັນ_ເດືອນ_ປີ_ເກີດ: "04/12/2000",
         },
       ],
+      permission: ["none", "ພະຍາບານ", "ທ່ານໝໍ"],
     };
   },
 };
 </script>
-<style scoped>
-.font {
-  font-family: "Noto Serif Lao", serif;
-}
-</style>

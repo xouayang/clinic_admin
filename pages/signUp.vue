@@ -1,5 +1,5 @@
 <template>
-  <v-app class="background">
+  <v-app class="color">
     <v-main class="d-flex justify-center align-center">
       <v-col cols="10" lg="4" md="6" sm="12" class="mx-auto">
         <v-card class="pa-4" elevation="5">
@@ -13,11 +13,22 @@
            </div>
           <div class="d-flex justify-center">
             <v-card-title style="color: #9155fd"
-              >ຍິນດີຕ້ອນຮັບເຂົ້າສູ່ລະບົບ !</v-card-title
+              >ລົງທະບຽນ !</v-card-title
             >
           </div>
           <v-form @submit.prevent="submitHandler" ref="form">
             <v-card-text>
+                <v-text-field
+                v-model="telephone"
+                :rules="numberRules"
+                outlined
+                dense
+                append-icon="mdi-account-outline"
+                type="email"
+                label="ຊື່ຜູ້ໃຊ້"
+                required
+                color="#9155fd"
+              />
               <v-text-field
                 v-model="telephone"
                 :rules="numberRules"
@@ -38,26 +49,21 @@
                 outlined
                 dense
                 hide-details="auto"
-                placeholder="ລະຫັດຜ່ານ"
                 :append-icon="passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
                 @click:append="passwordShow = !passwordShow"
                 required
                 color="#9155fd"
               />
-              <v-spacer></v-spacer>
-              <div class="d-flex justify-end text-underline pointer">
-                ລືມລະຫັດຜ່ານ ?
-              </div>
             </v-card-text>
             <v-card-actions class="justify-center">
               <v-btn block  type="submit" color="#9155fd" to="/">
-                <span class="white--text px-8">ເຂົ້າສູ່ລະບົບ</span>
+                <span class="white--text px-8">ລົງທະບຽນ</span>
               </v-btn>
             </v-card-actions>
             <div class="d-flex justify-end">
               <div class="text">
-                ບໍ່ມີບັນຊີ ?
-                <v-btn text style="color: #9155fd; cursor: pointer" to="/signUp">ລົງທະບຽນ</v-btn>
+                ມີບັນຊີເເລ້ວ ?
+                <v-btn text style="color: #9155fd; cursor: pointer" to="/login">ເຂົ້າສູ່ລະບົບ</v-btn>
               </div>
             </div>
           </v-form>
@@ -68,26 +74,13 @@
 </template>
 <script>
 export default {
-  name: "LoginPages",
+  name: "SignUpPages",
   layout: "blank",
 };
 </script>
-<style  scoped>
+<style>
 * {
   font-family: "Noto Serif Lao", serif;
 }
-.text {
-  font-size: 16px;
-}
-.pointer {
-  cursor: pointer;
-  color: #9155fd;
-}
-.images{
-  width: 60px;
-  height: 60px;
-}
 
-</style>>
-  
 </style>

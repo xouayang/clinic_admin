@@ -201,9 +201,26 @@
             </v-list-item-content>
           </v-list-item>
         </v-list-group>
+
+        <v-list-item
+          v-for="(iconCog, i) in setting"
+          :key="'A'+i"
+          :to="iconCog.to"
+          router
+          exact
+          color="#9155FD"
+          class="mt-2"
+        >
+          <v-list-item-action>
+            <v-icon>{{ iconCog.icon }}</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>{{ iconCog.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar :clipped-left="clipped" fixed app elevation="0">
+    <v-app-bar :clipped-left="clipped" fixed app elevation="1">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-btn icon @click.stop="miniVariant = !miniVariant">
         <v-icon>mdi-{{ `chevron-${miniVariant ? "right" : "left"}` }}</v-icon>
@@ -234,7 +251,7 @@
       </v-container>
     </v-main>
     <v-footer :absolute="!fixed" app class="d-flex justify-center">
-      <span>ຄີຣນິກ ດຣ ມົວວ່າງ ເຊຍປາວ</span>
+      <span>ຄີຣນິກ ດຣ ສະຖຽນ</span>
     </v-footer>
   </v-app>
 </template>
@@ -250,22 +267,15 @@ export default {
       drawer: false,
       fixed: false,
       show: false,
-      items: [
-        {
-          icon: "mdi-home-outline",
-          title: "ໜ້າຫຼັກ",
-          to: "/",
-        },
-      ],
       menuList: [
         {
           icon: "mdi-doctor",
-          title: "ປີ່ນປົວ",
+          title: "ກວດພະຍາດ",
           nestList: [
-            { title: "ກວດການັດໝາຍ", to: "" },
-            { title: "ກວດເບື້ອງຕົ້ນ", to: "" },
-            { title: "ບັນທືກການປີ່ນປົວ", to: "" },
-            { title: "ອອກໃບສັ່ງຢາ", to: "" },
+            { title: "ກວດການັດໝາຍ", to: "/treat/Check_appointment" },
+            { title: "ບັນທຶກຂໍ້ມູນພື້ນຖານ", to: "/treat/basic_record" },
+            // { title: "ບັນທືກການປີ່ນປົວ", to: "" },
+            // { title: "ອອກໃບສັ່ງຢາ", to: "" },
           ],
         },
       ],
@@ -323,14 +333,28 @@ export default {
             { title: "ຈັດການຂໍ້ມູນຢາ-ອຸປະກອນ", to: "/manage/manage_drug_equipment" },
             { title: "ຈັດການລາຍການກວດ", to: "/manage/manage_checklists" },
             { title: "ຈັດການຂໍ້ມູນຜູ້ສະໜອງ", to: "/manage/Manage_supplier" },
-            { title: "ຈັດການຂໍ້ມູນການນັດໝາຍ", to: "/manage/Manage_appointment" },
+            { title: "ຈັດການຂໍ້ມູນການນັດໝາຍ", to: "/manage/Manage_appointment" }
           ],
         },
+      ],
+       items: [
+        {
+          icon: "mdi-home-outline",
+          title: "ໜ້າຫຼັກ",
+          to: "/",
+        },
+      ],
+      setting:[
+        {
+          icon: "mdi-cog-outline",
+          title: "ຕັ້ງຄ່າລະບົບ",
+          to: "/setting",
+        }
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: "ຄີຣນິກ ດຣ ມົວວ່າງ ເຊຍປາວ",
+      title: "ຄີຣນິກ ດຣ ສະຖຽນ",
     };
   },
   methods: {
