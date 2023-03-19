@@ -248,11 +248,12 @@ export default {
       menuList1: [
         {
           icon: "mdi-medical-cotton-swab",
-          title: "ຈ່າຍຢາ",
+          // title: "ຈ່າຍຢາ",
+          title: "ຂາຍຢາ",
           nestList1: [
-            { title: "ກວດສອບໃບສັ່ງຢາ", to: "" },
-            { title: "ບັນທຶກການຈ່າຍຢາ", to: "" },
-            { title: "ຢືນຢັນການຈ່າຍຢາ", to: "" },
+            { title: "ກວດສອບໃບສັ່ງຢາ", to: "/prescription/check_prescription" },
+            // { title: "ບັນທຶກການຈ່າຍຢາ", to: "" },
+            // { title: "ຢືນຢັນການຈ່າຍຢາ", to: "" },
           ],
         },
       ],
