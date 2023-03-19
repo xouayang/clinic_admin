@@ -172,36 +172,6 @@
             </v-list-item-content>
           </v-list-item>
         </v-list-group>
-        <v-list-group
-          v-for="(group, index) in menuList4"
-          :key="'G'+index"
-          :value="group.active"
-          :prepend-icon="group.icon"
-          no-action
-          color="#9155FD"
-          class="pt-1"
-        >
-          <template v-slot:activator>
-            <v-list-item-content>
-              <v-list-item-title class="pt-1">{{
-                group.title
-              }}</v-list-item-title>
-            </v-list-item-content>
-          </template>
-          <v-list-item
-            v-for="(item, index) in group.nestList4"
-            :key="index"
-            :to="item.to"
-            router
-            exact
-            class="rounded-xl"
-          >
-            <v-list-item-content>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-group>
-
         <v-list-item
           v-for="(iconCog, i) in setting"
           :key="'A'+i"
@@ -231,12 +201,8 @@
 
       <v-toolbar-title style="color:#9155FD">{{ title }}</v-toolbar-title>
       <v-spacer />
-      <div v-ripple class="text-center px-3 cursor-pointer" @click="setTheme">
-        <div>
-          <v-icon color="#9155FD">{{
-            !sun ? "mdi-weather-night" : "mdi-white-balance-sunny"
-          }}</v-icon>
-        </div>
+      <div v-ripple class="text-center px-3 cursor-pointer">
+         <v-btn text rounded>  <span>ຜູ້ເຂົ້າໃໍຊ້ລະບົບ : XOUAYANG</span></v-btn>
       </div>
       <div v-ripple class="text-center px-3 cursor-pointer" @click="Logout">
         <v-btn text rounded>
@@ -245,7 +211,7 @@
         </v-btn>
       </div>
     </v-app-bar>
-    <v-main :class="sun ? '' : 'bgcolor'">
+    <v-main class="bgcolor">
       <v-container>
         <Nuxt />
       </v-container>
@@ -345,6 +311,11 @@ export default {
         },
       ],
       setting:[
+                {
+          icon: "mdi-chart-line",
+          title: "ລາຍງານ",
+          to: "/reports/reportTable",
+        },
         {
           icon: "mdi-cog-outline",
           title: "ຕັ້ງຄ່າລະບົບ",
@@ -358,19 +329,6 @@ export default {
     };
   },
   methods: {
-    setTheme() {
-      this.sun = !this.sun;
-      this.dark = this.sun;
-      if (this.sun === true) {
-        this.$vuetify.theme.dark = true;
-        this.$cookies.set("mode", true);
-        return true;
-      } else {
-        this.$vuetify.theme.dark = false;
-        this.$cookies.set("mode", false);
-        return false;
-      }
-    },
     Logout() {
       this.$router.push("login");
     },
