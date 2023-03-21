@@ -22,10 +22,20 @@
         </div>
       </div>
       <div>
-        <v-data-table :headers="headers" :items="items">
+        <v-data-table
+          :headers="headers"
+          :items="items"
+          :footer-props="{
+            'items-per-page-options': [10],
+            'disable-items-per-page': true,
+          }"
+        >
           <template slot="item.pk" scope="props">
             {{ props.index + 1 }}</template
           >
+          <template #footer>
+              <v-spacer/>
+          </template>
         </v-data-table>
       </div>
     </v-card>

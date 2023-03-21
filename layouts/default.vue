@@ -1,5 +1,5 @@
 <template>
-  <v-app :dark="dark">
+  <v-app>
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
@@ -273,8 +273,7 @@ export default {
           icon: "mdi-import",
           title: "ນຳເຂົ້າ",
           nestList3: [
-            { title: "ກວດສອບການສັ່ງຊື້", to: "" },
-            { title: "ບັນທືກການນຳເຂົ້າ", to: "" },
+            { title: "ກວດສອບການສັ່ງຊື້", to: "/import" }
           ],
         },
       ],

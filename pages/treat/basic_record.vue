@@ -10,19 +10,32 @@
       <v-row class="d-flex align-center col-12">
         <v-col cols="12" md="6" sm="12">
           <v-text-field
-            outlined
             label="ຊື່ ເເລະ ນາມສະກຸນ"
+            prepend-inner-icon="mdi-account-outline"
+            outlined
             dense
             color="#9155FD"
           />
-          <v-text-field outlined label="ລາຍລະອຽດອາການ" dense color="#9155FD" />
+          <v-text-field
+            label="ອາການເບື້ອງຕົ້ນ"
+            prepend-inner-icon="mdi-doctor"
+            outlined
+            dense
+            color="#9155FD"
+          />
         </v-col>
         <v-col cols="12" md="6" sm="12">
-          <v-text-field outlined label="ເບີໂທລະສັບ" dense color="#9155FD" />
+          <v-text-field
+            label="ເບີໂທລະສັບ"
+            prepend-inner-icon="mdi-phone-outline"
+            outlined
+            dense
+            color="#9155FD"
+          />
           <v-select
+            label="ເລືອກລາຍການກວດ"
             multiple
             outlined
-            label="ເລືອກລາຍການກວດ"
             dense
             color="#9155FD"
             :items="item"
@@ -39,7 +52,9 @@
           <v-col cols="12" md="6" sm="12">
             <div>ຊື່ ເເລະ ນາມສະກຸນ : XOUAYANG</div>
             <div class="mt-5">ເບີໂທລະສັບ: 02054116066</div>
-            <div class="mt-5"> ລາຄາກວດທັງໝົດ: <span style="color:red">200000 LAK</span></div>
+            <div class="mt-5">
+              ລາຄາກວດທັງໝົດ: <span style="color: red">200000 LAK</span>
+            </div>
           </v-col>
           <v-col cols="12" md="6" sm="12">
             <div>ຊື່ ເເລະ ນາມສະກຸນ : XOUAYANG</div>
@@ -48,8 +63,10 @@
               ກວດປັດສະວະ,ກວດຄວາມສົມບູນຂອງເລືອດ
             </div>
           </v-col>
-          <v-col class="d-flex justify-end" >
-            <v-btn color="#9155FD" to="/bill"><span style="color:white">ອອກໃບບິນຈ່າຍເງິນ</span></v-btn>
+          <v-col class="d-flex justify-end">
+            <v-btn color="#9155FD" to="/bill"
+              ><span style="color: white">ອອກໃບບິນຈ່າຍເງິນ</span></v-btn
+            >
           </v-col>
         </v-row>
       </v-card>

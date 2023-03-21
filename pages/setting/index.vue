@@ -33,7 +33,8 @@
         :headers="headers"
         :items="items"
         :items-per-page="5"
-        color="#9155FD"
+         color="#9155FD"
+         :search="searchTerm"
       >
         <template #[`item.action`]>
           <v-tooltip top color="error">
@@ -338,10 +339,10 @@ export default {
           ທີ່ຢູ່: "XAYSOMBOUN",
         },
         {
-          ລະຫັດຜູ້ໃຊ້: "U001",
+          ລະຫັດຜູ້ໃຊ້: "U002",
           ຮູບພາບ: "XXXXXXXX",
-          ຊື່: "XOUAYANG",
-          ເບີໂທລະສັບ: "02054116066",
+          ຊື່: "Dao",
+          ເບີໂທລະສັບ: "02077975212",
           ຕຳເເໜ່ງ: "Doctor",
           ທີ່ຢູ່: "XAYSOMBOUN",
         },
