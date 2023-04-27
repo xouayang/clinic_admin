@@ -31,6 +31,7 @@
         :items="items"
         :items-per-page="5"
         color="#9155FD"
+        :search="searchTerm"
       >
         <template #[`item.action`]>
           <v-tooltip top color="error">
@@ -261,9 +262,9 @@ export default {
         },
         {
           ລະຫັດຜູ້ສະໜອງ: "2",
-          ຊື່: "XOUAYANG",
-          ເບີໂທລະສັບ: "02054116066",
-          ທີ່ຢູ່: "XAYSOMBOUN",
+          ຊື່: "XINGYANG",
+          ເບີໂທລະສັບ: "02077975215",
+          ທີ່ຢູ່: "VIENTIANE",
         },
         
       ],

@@ -1,34 +1,57 @@
 <template >
   <div>
-    <div class="mt-2 mb-3 ml-2 font-weight-bold container">ກວດສອບນຳເຂົ້າ</div>
+    <div class="mt-4 mb-3 ml-2 font-weight-bold container">ກວດສອບຂໍ້ມູນຢາ</div>
     <!-- <div>ກວດສອບນຳເຂົ້າ</div> -->
     <v-card>
       <v-row class="d-flex justify-end col-12">
-        <v-col cols="12" md="12" sm="12">
-          <v-card-title>
+        <v-col cols="12" md="8" sm="12">
+           <v-text-field
+            prepend-inner-icon="mdi-barcode"
+            label="ກວດສອບ"
+            outlined
+            hide-details
+            dense
+            small
+            color="#9155FD"
+            class="mb-2"
+          />
+          <v-col>
+            <v-data-table :headers="headers" :items="data" color="#9155FD">
+              <template slot="item.indx" scope="props">
+                {{ props.index + 1 }}
+              </template>
+            </v-data-table></v-col
+          >
+        </v-col>
+        <v-divider vertical></v-divider>
+        <v-col cols="12" sm="12" md="4">
+          <div class="font-weight-bold text-center mb-2">ສັ່ງຊື້</div>
             <v-text-field
-              prepend-inner-icon="mdi-barcode"
-              label="ກວດສອບ"
               outlined
-              hide-details
               dense
-              small
-              color="#9155FD"
+              label="ລະຫັດ"
+              prepend-inner-icon="mdi-barcode"
             />
-          </v-card-title>
+             <v-select
+              outlined
+              dense
+              label="ປະເພດ"
+            />
+            <v-text-field
+              outlined
+              dense
+              label="ຈຳນວນ"
+              prepend-inner-icon="mdi-counter"
+            />
         </v-col>
       </v-row>
-      <v-data-table :headers="headers" :items="data" color="#9155FD">
-        <template slot="item.indx" scope="props">
-          {{ props.index + 1 }}
-        </template>
-      </v-data-table>
+
       <v-divider></v-divider>
     </v-card>
     <v-row class="mt-3">
       <v-col cols="12" class="text-end">
-        <v-btn  color="#9155FD">
-          <span style="color:white">ບັນທຶກການນຳເຂົ້າ</span>
+        <v-btn color="#9155FD">
+          <span style="color: white">ບັນທຶກການສັ່ງຊື້</span>
           <v-icon color="white">mdi-content-save-check-outline</v-icon>
         </v-btn>
       </v-col>
@@ -123,7 +146,7 @@
 </template>
 <script>
 export default {
-  name: "Import_pages",
+  name: "Order_pages",
   data() {
     return {
       value: null,
@@ -132,8 +155,9 @@ export default {
       showDailog: false,
       dialog: false,
       showAddDialog: false,
-      search:'',
+      search: "",
       data: [],
+      
       headers: [
         { text: "ລຳດັບ", value: "indx" },
         { text: "ລະຫັດນຳເຂົ້າ ", value: "IMPORT_CODE" },
@@ -141,8 +165,8 @@ export default {
         { text: "ຊື່ຢາ", value: "ຊື່ຢາ" },
         { text: "ປະເພດ", value: "ປະເພດ" },
         { text: "ຫົວໜ່ວຍ", value: "ປະເພດ" },
-        { text: "ວັນ ເດືອນ ປີ ນຳເຂົ້າ", value: "import_date" },
-        { text: "ວັນ ເດືອນ ປີ ໝົດອາຍຸ", value: "expired_date" },
+        { text: "ນຳເຂົ້າ", value: "import_date" },
+        { text: "ໝົດອາຍຸ", value: "expired_date" },
       ],
       item: {
         id: "",
@@ -155,9 +179,9 @@ export default {
   },
   methods: {
     showData() {
-    //  const id =  this.data.push(this.item.id)
-    //   console.log(id)
-      this.dialog = false
+      //  const id =  this.data.push(this.item.id)
+      //   console.log(id)
+      this.dialog = false;
       this.$refs.anyName.reset();
     },
   },

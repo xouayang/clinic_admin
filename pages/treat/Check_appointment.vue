@@ -42,7 +42,7 @@
               <v-col cols="12" md="12" sm="12" class="d-flex justify-end">
                 <v-col sm="12" cols="12" md="10">
                   <v-text-field
-                  v-model="search1"
+                   v-model="search1"
                     outlined
                     dense
                     label="ຄົ້ນຫາ"

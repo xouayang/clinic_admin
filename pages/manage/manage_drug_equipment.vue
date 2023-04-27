@@ -31,6 +31,7 @@
         :items="items"
         :items-per-page="5"
         color="#9155FD"
+        :search="searchTerm"
       >
         <template #[`item.action`]>
           <v-tooltip top color="error">

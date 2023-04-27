@@ -174,7 +174,7 @@
         </v-list-group>
         <v-list-item
           v-for="(iconCog, i) in setting"
-          :key="'A'+i"
+          :key="'I'+i"
           :to="iconCog.to"
           router
           exact
@@ -262,9 +262,9 @@ export default {
           icon: "mdi-cart-percent",
           title: "ຈັດຊື້",
           nestList2: [
-            { title: "ກວດສອບຂໍ້ມູນຢາ-ອຸປະກອນ", to: "" },
-            { title: "ບັນທຶກການສັ່ງຊື້", to: "" },
-            { title: "ພິມໃບບິນ", to: "" },
+            { title: "ກວດສອບຂໍ້ມູນຢາ-ອຸປະກອນ", to: "/orders" },
+            // { title: "ບັນທຶກການສັ່ງຊື້", to: "" },
+            // { title: "ພິມໃບບິນ", to: "" },
           ],
         },
       ],

@@ -9,7 +9,7 @@
             <v-text-field
               prepend-inner-icon="mdi-magnify"
               v-model="searchTerm"
-              label="ຄົ້ນຫາຕາມຊື່"
+              label="ຄົ້ນຫາ"
               outlined
               hide-details
               dense
@@ -33,8 +33,8 @@
         :headers="headers"
         :items="items"
         :items-per-page="5"
-         color="#9155FD"
-         :search="searchTerm"
+        color="#9155FD"
+        :search="searchTerm"
       >
         <template #[`item.action`]>
           <v-tooltip top color="error">
@@ -56,23 +56,6 @@
               </v-btn>
             </template>
             <span>ເເກ້ໄຂ</span>
-          </v-tooltip>
-        </template>
-
-        <template #[`item.permission`]>
-          <v-tooltip top color="#9155FD">
-            <template #activator="{ on, attrs }">
-              <v-btn
-                color="#9155FD"
-                rounded
-                v-bind="attrs"
-                v-on="on"
-                @click="showPermission = !showPermission"
-              >
-                <v-icon color="white">mdi-key-outline</v-icon>
-              </v-btn>
-            </template>
-            <span>ກຳນົດສິດທິຜູ້ໃຊ້</span>
           </v-tooltip>
         </template>
         <template #[`item.avatar`]>
@@ -143,7 +126,6 @@
           <v-divider></v-divider>
           <v-col cols="12">
             <v-text-field
-              placeholder="XOUAYANG"
               outlined
               dense
               hide-details="auto"
@@ -153,7 +135,15 @@
           </v-col>
           <v-col cols="12">
             <v-text-field
-              placeholder="XOUAYANG"
+              outlined
+              dense
+              hide-details="auto"
+              label="ຕຳເເໜ່ງ"
+              color="#9155FD"
+            />
+          </v-col>
+          <v-col cols="12">
+            <v-text-field
               outlined
               dense
               hide-details
@@ -163,7 +153,6 @@
           </v-col>
           <v-col cols="12">
             <v-text-field
-              placeholder="XOUAYANG"
               outlined
               dense
               hide-details
@@ -173,7 +162,6 @@
           </v-col>
           <v-col cols="12">
             <v-text-field
-              placeholder="XOUAYANG"
               outlined
               dense
               hide-details
@@ -212,7 +200,6 @@
           <v-divider></v-divider>
           <v-col cols="12">
             <v-text-field
-              placeholder="XOUAYANG"
               outlined
               dense
               hide-details="auto"
@@ -221,8 +208,17 @@
             />
           </v-col>
           <v-col cols="12">
+            <v-select
+              outlined
+              dense
+              hide-details="auto"
+              label="ຕຳເເໜ່ງ"
+              color="#9155FD"
+              :items="position"
+            />
+          </v-col>
+          <v-col cols="12">
             <v-text-field
-              placeholder="XOUAYANG"
               outlined
               dense
               hide-details
@@ -232,7 +228,6 @@
           </v-col>
           <v-col cols="12">
             <v-text-field
-              placeholder="XOUAYANG"
               outlined
               dense
               hide-details
@@ -242,13 +237,23 @@
           </v-col>
           <v-col cols="12">
             <v-text-field
-              placeholder="XOUAYANG"
               outlined
               dense
               hide-details
               label="ວັນ ເດືອນ ປີ ເກີດ "
               color="#9155FD"
             />
+          </v-col>
+          <v-col cols="12">
+            <v-select
+              outlined
+              dense
+              hide-details
+              label="ກຳນົດສິດທິ"
+              color="#9155FD"
+              :items="position"
+            />
+            <div style="color: red">* ກະລຸນາກຳນົດສິດທິ</div>
           </v-col>
           <v-spacer></v-spacer>
           <div class="d-flex justify-end pa-4">
@@ -260,50 +265,6 @@
               >ບັນທືກ</v-btn
             >
           </div>
-        </v-card>
-      </v-dialog>
-    </v-row>
-    <v-row>
-      <v-dialog
-        v-model="showPermission"
-        width="600"
-        transition="dialog-bottom-transition"
-        persistent
-      >
-        <v-card>
-          <v-card>
-            <v-toolbar dark color="#9155FD">
-              <div>ກຳນົດສິດທິຜູ້ໃຊ້</div>
-              <v-spacer></v-spacer>
-              <v-btn icon dark @click="showPermission = !showPermission">
-                <v-icon>mdi-close</v-icon>
-              </v-btn>
-            </v-toolbar>
-            <v-divider></v-divider>
-            <div style="color: red" class="container">
-              *ກະລຸນາກຳນົດສິດທິຜູ້ໃຊ້
-            </div>
-            <div class="container">
-              <v-select
-                clearable
-                label="ກຳນົດສິດທິຜູ້ໃຊ້"
-                color="#9155FD"
-                outlined
-                dense
-                :items="permission"
-              ></v-select>
-            </div>
-            <v-spacer></v-spacer>
-            <div class="d-flex justify-end pa-4">
-              <v-btn
-                color="#9155FD"
-                width="100"
-                class="white--text"
-                @click="showPermission = false"
-                >ບັນທືກ</v-btn
-              >
-            </div>
-          </v-card>
         </v-card>
       </v-dialog>
     </v-row>
@@ -319,6 +280,7 @@ export default {
       dialog: false,
       showAddDialog: false,
       showPermission: false,
+      position: ["ທ່ານໝໍ", "ພະຍານບານ", "ພະນັກງານ"],
       headers: [
         { text: "ລະຫັດຜູ້ໃຊ້", value: "ລະຫັດຜູ້ໃຊ້" },
         { text: "ຮູບພາບ", value: "avatar" },
@@ -327,7 +289,6 @@ export default {
         { text: "ຕຳເເໜ່ງ", value: "ຕຳເເໜ່ງ" },
         { text: "ທີ່ຢູ່", value: "ທີ່ຢູ່" },
         { text: "ຈັດການສິດທິ", value: "action" },
-        { text: "ກຳນົດສິດທິຜູ້ໃຊ້", value: "permission" },
       ],
       items: [
         {

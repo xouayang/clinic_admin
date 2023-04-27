@@ -31,6 +31,7 @@
         :items="items"
         :items-per-page="5"
         color="#9155FD"
+        :search="searchTerm"
       >
         <template #[`item.action`]>
           <v-tooltip top color="error">
@@ -269,11 +270,11 @@ export default {
         },
         {
           ລະຫັດພະນັກງານ: "2",
-          ຊື່: "XOUAYANG",
+          ຊື່: "XINGYANG",
           ເພດ: "ຊາຍ",
           ວັນ_ເດືອນ_ປີ_ເກີດ: "04/12/2000",
           ເບີໂທລະສັບ: "02054116066",
-          ທີ່ຢູ່: "XAYSOMBOUN",
+          ທີ່ຢູ່: "VIENTIANE",
           ສະຖານະ:"active",
           ຕຳເເໜ່ງ:"Doctor"
         },

@@ -9,7 +9,7 @@
             <v-text-field
               prepend-inner-icon="mdi-magnify"
               v-model="searchTerm"
-              label="ຄົ້ນຫາຕາມຊື່"
+              label="ຄົ້ນຫາ"
               outlined
               hide-details
               dense
@@ -31,6 +31,7 @@
         :items="items"
         :items-per-page="5"
         color="#9155FD"
+        :search="searchTerm"
       >
         <template #[`item.action`]>
           <v-tooltip top color="error">
@@ -257,7 +258,7 @@ export default {
         {
           ລຳດັບ: "1",
           ຊື່: "XOUAYANG",
-          ທີ່ຢູ່: "XAYSOMBOUN",
+          ທີ່ຢູ່: "Vientiane",
           ເບີໂທລະສັບ: "02054116066",
           ວັນ_ເດືອນ_ປີ_ເກີດ: "04/12/2000",
         },
