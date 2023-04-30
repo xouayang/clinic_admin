@@ -28,7 +28,7 @@
 
       <v-data-table
         :headers="headers"
-        :items="items"
+        :items="patient.rows"
         :items-per-page="5"
         color="#9155FD"
         :search="searchTerm"
@@ -55,14 +55,18 @@
             <span>ເເກ້ໄຂ</span>
           </v-tooltip>
         </template>
+        <template slot="item.index" scope="props">
+         {{props.index + 1}}
+        </template>
       </v-data-table>
     </v-card>
+
     <v-dialog v-model="showDailog" width="540" activator="parent" persistent>
       <v-card>
         <v-toolbar dark color="#9155FD">
           <v-card-title>ທ່ານເເນ່ໃຈບໍ ?</v-card-title>
           <v-spacer></v-spacer>
-          <v-btn icon @click="showDailog = !showDailog">
+          <v-btn icon  @click="deleteData">
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-toolbar>
@@ -70,8 +74,8 @@
         <div class="mt-2 col-12">
           <div class="d-flex align-center justify-space-around text-center">
             <v-card-text class="mb-2"
-              >ຊື່ <br />
-              XOUAYANG
+              >ຊື່<br />
+             xouayang
             </v-card-text>
             <v-card-text class="mb-2"
               >ທີ່ຢູ່ <br />
@@ -247,44 +251,28 @@ export default {
       dialog: false,
       showAddDialog : false,
       headers: [
-        { text: "ລຳດັບ", value: "ລຳດັບ" },
-        { text: "ຊື່", value: "ຊື່" },
-        { text: "ທີ່ຢູ່", value: "ທີ່ຢູ່" },
-        { text: "ເບີໂທລະສັບ", value: "ເບີໂທລະສັບ" },
-        { text: "ວັນ ເດືອນ ປີ ເກີດ", value: "ວັນ_ເດືອນ_ປີ_ເກີດ" },
+        { text: "ລຳດັບ", value: "index" },
+        { text: "ຊື່", value: "name" },
+        { text: "ທີ່ຢູ່", value: "address" },
+        { text: "ເບີໂທລະສັບ", value: "tel" },
+        { text: "ວັນ ເດືອນ ປີ ເກີດ", value: "birtday" },
         { text: "Actions", value: "action" },
       ],
-      items: [
-        {
-          ລຳດັບ: "1",
-          ຊື່: "XOUAYANG",
-          ທີ່ຢູ່: "Vientiane",
-          ເບີໂທລະສັບ: "02054116066",
-          ວັນ_ເດືອນ_ປີ_ເກີດ: "04/12/2000",
-        },
-        {
-          ລຳດັບ: "2",
-          ຊື່: "XOUAYANG",
-          ທີ່ຢູ່: "XAYSOMBOUN",
-          ເບີໂທລະສັບ: "02054116066",
-          ວັນ_ເດືອນ_ປີ_ເກີດ: "04/12/2000",
-        },
-        {
-          ລຳດັບ: "3",
-          ຊື່: "XOUAYANG",
-          ທີ່ຢູ່: "XAYSOMBOUN",
-          ເບີໂທລະສັບ: "02054116066",
-          ວັນ_ເດືອນ_ປີ_ເກີດ: "04/12/2000",
-        },
-        {
-          ລຳດັບ: "4",
-          ຊື່: "XOUAYANG",
-          ທີ່ຢູ່: "XAYSOMBOUN",
-          ເບີໂທລະສັບ: "02054116066",
-          ວັນ_ເດືອນ_ປີ_ເກີດ: "04/12/2000",
-        },
-      ],
+
     };
+  },
+  methods: {
+    deletePatient () {
+     this.$store.dispatch("patient/deleteData");
+    }
+  },
+  computed: {
+    patient() {
+      return this.$store.state.patient.dataPatients;
+    },
+  },
+  async mounted() {
+    await this.$store.dispatch("patient/patientInfo");
   },
 };
 </script>

@@ -117,7 +117,8 @@
                 rounded="xl"
                 class="mt-5 pt-3 pl-3"
                 elevation="0"
-                >ໃນສະຕອບ (stock)
+                style="cursor:pointer"
+                >ປະເພດ (Category)
                 <v-row align="center">
                   <v-col><div class="mt-3 text-h4">100</div></v-col>
                   <v-col>

@@ -1,16 +1,36 @@
 export const state = () => ({
-
+  number:10 ,
+  suppliers:[],
+  loading:false,
+  datas:[]
+  
 })
-
-export const mutations={
-
+export const mutations = {
+   changeNumber(state,data) {
+       state.number = data
+   },
+   setUser(state,data) {
+       state.suppliers = data
+   },
+   setLoading(state,data) {
+       state.loading = data
+   },
+   setData(state,data) {
+    state.datas = data
+   }
 }
 
 export const actions = {
-    async login({commit},form) {
-        await this.$axios.post('https://api.itcapital.la/login', form).then((data) => {
-          this.$cookies.set('token', data.data.token)
-          this.$router.push('/')
-        })
-      },
+ async showUser({commit}) {
+     await  this.$axios.get('http://localhost:7000/get-suppliers').then(user => {
+           commit("setUser", user.data)
+          //  console.log(user.data.rows)
+       })
+   },
+
+ async singleData({commit},params) {
+     await  this.$axios.get('http://localhost:7000/get-single', {params}).then(user => {
+            commit("datas", user.data)
+       })
+   }
 }

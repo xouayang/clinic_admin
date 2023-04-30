@@ -28,7 +28,7 @@
 
       <v-data-table
         :headers="headers"
-        :items="items"
+        :items="staff.rows"
         :items-per-page="5"
         color="#9155FD"
         :search="searchTerm"
@@ -55,8 +55,12 @@
             <span>ເເກ້ໄຂ</span>
           </v-tooltip>
         </template>
+        <template slot="item.index" scope="props" >
+         {{props.index + 1}}
+        </template>
       </v-data-table>
     </v-card>
+    
     <v-dialog v-model="showDailog" width="540" activator="parent" persistent>
       <v-card>
         <v-toolbar dark color="#9155FD">
@@ -247,40 +251,25 @@ export default {
       dialog: false,
       showAddDialog : false,
       headers: [
-        { text: "ລະຫັດພະນັກງານ", value: "ລະຫັດພະນັກງານ" },
-        { text: "ຊື່", value: "ຊື່" },
-         { text: "ເພດ", value: "ເພດ" },
-        { text: "ວັນ ເດືອນ ປີ ເກີດ", value: "ວັນ_ເດືອນ_ປີ_ເກີດ" },
-        { text: "ເບີໂທລະສັບ", value: "ເບີໂທລະສັບ" },
-        { text: "ທີ່ຢູ່", value: "ທີ່ຢູ່" },
-        { text: "ສະຖານະ", value: "ສະຖານະ" },
-        { text: "ຕຳເເໜ່ງ", value: "ຕຳເເໜ່ງ" },
+        { text: "ລະຫັດພະນັກງານ", value: "index" },
+        { text: "ຊື່", value: "name" },
+         { text: "ເພດ", value: "gender" },
+        { text: "ວັນ ເດືອນ ປີ ເກີດ", value: "birtday" },
+        { text: "ເບີໂທລະສັບ", value: "tel" },
+        { text: "ທີ່ຢູ່", value: "address" },
+        { text: "ສະຖານະ", value: "status" },
+        { text: "ຕຳເເໜ່ງ", value: "position" },
         { text: "Actions", value: "action" },
       ],
-      items: [
-        {
-          ລະຫັດພະນັກງານ: "1",
-          ຊື່: "XOUAYANG",
-          ເພດ: "ຊາຍ",
-          ວັນ_ເດືອນ_ປີ_ເກີດ: "04/12/2000",
-          ເບີໂທລະສັບ: "02054116066",
-          ທີ່ຢູ່: "XAYSOMBOUN",
-          ສະຖານະ:"active",
-          ຕຳເເໜ່ງ:"Doctor"
-        },
-        {
-          ລະຫັດພະນັກງານ: "2",
-          ຊື່: "XINGYANG",
-          ເພດ: "ຊາຍ",
-          ວັນ_ເດືອນ_ປີ_ເກີດ: "04/12/2000",
-          ເບີໂທລະສັບ: "02054116066",
-          ທີ່ຢູ່: "VIENTIANE",
-          ສະຖານະ:"active",
-          ຕຳເເໜ່ງ:"Doctor"
-        },
-        
-      ],
     };
-  },  
+  }, 
+  computed: {
+    staff() {
+      return this.$store.state.staff.dataStaff;
+    },
+  },
+  async mounted() {
+    await this.$store.dispatch("staff/staffInfo");
+  },
 }
 </script>

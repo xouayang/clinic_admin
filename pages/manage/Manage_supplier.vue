@@ -1,9 +1,9 @@
 <template >
-      <div>
+  <div>
     <div class="mt-5 mb-3 pb-2 ml-2 font-weight-bold">ຈັດການຂໍ້ມູນຜູ້ສະໜອງ</div>
     <v-card>
       <!-- search button------------------------------- -->
-      <v-row  class="d-flex align-center col-12">
+      <v-row class="d-flex align-center col-12">
         <v-col cols="12" md="10" sm="12">
           <v-card-title>
             <v-text-field
@@ -19,16 +19,18 @@
           </v-card-title>
         </v-col>
         <v-col cols="12" md="2" sm="3" class="d-flex justify-end">
-          <v-btn  style="width:100" color="#9155FD" @click="showAddDialog = !showAddDialog"
-            ><span style="color:white">ເພີ່ມຂໍ້ມູນຜູ້ສະໜອງ</span>
+          <v-btn
+            style="width: 100"
+            color="#9155FD"
+            @click="showAddDialog = !showAddDialog"
+            ><span style="color: white">ເພີ່ມຂໍ້ມູນຜູ້ສະໜອງ</span>
             <v-icon color="white">mdi-plus-outline</v-icon>
           </v-btn>
         </v-col>
       </v-row>
-
       <v-data-table
         :headers="headers"
-        :items="items"
+        :items="supplier.rows"
         :items-per-page="5"
         color="#9155FD"
         :search="searchTerm"
@@ -36,7 +38,7 @@
         <template #[`item.action`]>
           <v-tooltip top color="error">
             <template #activator="{ on, attrs }">
-              <v-btn icon v-bind="attrs" v-on="on">
+              <v-btn icon v-bind="attrs" v-on="on" @click="deleteData">
                 <v-icon color="error" @click="showDailog = !showDailog"
                   >mdi-trash-can-outline</v-icon
                 >
@@ -54,6 +56,9 @@
             </template>
             <span>ເເກ້ໄຂ</span>
           </v-tooltip>
+        </template>
+        <template slot="item.index" scope="props">
+          {{ props.index + 1 }}
         </template>
       </v-data-table>
     </v-card>
@@ -166,7 +171,7 @@
         </v-card>
       </v-dialog>
     </v-row>
-     <v-row>
+    <v-row>
       <v-dialog
         v-model="showAddDialog"
         width="600"
@@ -239,36 +244,34 @@
 </template>
 <script>
 export default {
-  name:"Manage_supplier",
-   data() {
+  name: "Manage_supplier",
+  data() {
     return {
       searchTerm: "",
       showDailog: false,
       dialog: false,
-      showAddDialog : false,
+      showAddDialog: false,
       headers: [
-        { text: "ລະຫັດຜູ້ສະໜອງ", value: "ລະຫັດຜູ້ສະໜອງ" },
-        { text: "ຊື່", value: "ຊື່" },
-        { text: "ເບີໂທລະສັບ", value: "ເບີໂທລະສັບ" },
-        { text: "ທີ່ຢູ່", value: "ທີ່ຢູ່" },
+        { text: "ລຳດັບ", value: "index" },
+        { text: "ຊື່", value: "supplier_name" },
+        { text: "ເບີໂທລະສັບ", value: "supplier_tel" },
+        { text: "ທີ່ຢູ່", value: "supplier_address" },
         { text: "Actions", value: "action" },
       ],
-      items: [
-        {
-          ລະຫັດຜູ້ສະໜອງ: "1",
-          ຊື່: "XOUAYANG",
-          ເບີໂທລະສັບ: "02054116066",
-          ທີ່ຢູ່: "XAYSOMBOUN",
-        },
-        {
-          ລະຫັດຜູ້ສະໜອງ: "2",
-          ຊື່: "XINGYANG",
-          ເບີໂທລະສັບ: "02077975215",
-          ທີ່ຢູ່: "VIENTIANE",
-        },
-        
-      ],
     };
-  },  
-}
+  },
+   methods: {
+    deleteData () {
+    alert("HI")
+    }
+  },
+  computed: {
+    supplier() {
+      return this.$store.state.user.suppliers;
+    },
+  },
+  async mounted() {
+    await this.$store.dispatch("user/showUser");
+  },
+};
 </script>

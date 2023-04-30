@@ -291,7 +291,7 @@ export default {
       ],
       menuItems: [
         {
-          icon: "mdi-store-clock",
+          icon: "mdi-cogs",
           title: "ຈັດການຂໍ້ມູນ",
           nestMenu: [
             { title: "ຈັດການຂໍ້ມູນຄົນເຈັບ", to: "/manage/Manage_patient" },
